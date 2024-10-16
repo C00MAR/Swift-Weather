@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E51E14802CBFC5F300E796B4 /* MeteoAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51E147F2CBFC5F300E796B4 /* MeteoAPIService.swift */; };
+		E53D726C2CBFBEB6004DEC24 /* MeteoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53D726B2CBFBEB6004DEC24 /* MeteoView.swift */; };
+		E53D726E2CBFBED9004DEC24 /* MorpionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53D726D2CBFBED9004DEC24 /* MorpionView.swift */; };
+		E5546C462CBFF90F00696929 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5546C452CBFF90F00696929 /* AppSettings.swift */; };
+		E5546C482CBFFAF700696929 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5546C472CBFFAF700696929 /* SettingsView.swift */; };
 		E5EFCF5D2CBEB12C00195017 /* MarcM_CoursSwiftApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EFCF5C2CBEB12C00195017 /* MarcM_CoursSwiftApp.swift */; };
 		E5EFCF5F2CBEB12C00195017 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EFCF5E2CBEB12C00195017 /* ContentView.swift */; };
 		E5EFCF612CBEB12E00195017 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5EFCF602CBEB12E00195017 /* Assets.xcassets */; };
@@ -15,6 +20,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E51E147F2CBFC5F300E796B4 /* MeteoAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeteoAPIService.swift; sourceTree = "<group>"; };
+		E53D726B2CBFBEB6004DEC24 /* MeteoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeteoView.swift; sourceTree = "<group>"; };
+		E53D726D2CBFBED9004DEC24 /* MorpionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorpionView.swift; sourceTree = "<group>"; };
+		E5546C452CBFF90F00696929 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		E5546C472CBFFAF700696929 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		E5EFCF592CBEB12C00195017 /* MarcM-CoursSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MarcM-CoursSwift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5EFCF5C2CBEB12C00195017 /* MarcM_CoursSwiftApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarcM_CoursSwiftApp.swift; sourceTree = "<group>"; };
 		E5EFCF5E2CBEB12C00195017 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -56,6 +66,11 @@
 				E5EFCF5C2CBEB12C00195017 /* MarcM_CoursSwiftApp.swift */,
 				E5EFCF5E2CBEB12C00195017 /* ContentView.swift */,
 				E5EFCF6A2CBEB1EC00195017 /* MainAppView.swift */,
+				E53D726B2CBFBEB6004DEC24 /* MeteoView.swift */,
+				E51E147F2CBFC5F300E796B4 /* MeteoAPIService.swift */,
+				E53D726D2CBFBED9004DEC24 /* MorpionView.swift */,
+				E5546C452CBFF90F00696929 /* AppSettings.swift */,
+				E5546C472CBFFAF700696929 /* SettingsView.swift */,
 				E5EFCF602CBEB12E00195017 /* Assets.xcassets */,
 				E5EFCF622CBEB12E00195017 /* Preview Content */,
 			);
@@ -141,8 +156,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				E5EFCF5F2CBEB12C00195017 /* ContentView.swift in Sources */,
+				E5546C482CBFFAF700696929 /* SettingsView.swift in Sources */,
 				E5EFCF6B2CBEB1EC00195017 /* MainAppView.swift in Sources */,
+				E5546C462CBFF90F00696929 /* AppSettings.swift in Sources */,
+				E53D726E2CBFBED9004DEC24 /* MorpionView.swift in Sources */,
+				E51E14802CBFC5F300E796B4 /* MeteoAPIService.swift in Sources */,
 				E5EFCF5D2CBEB12C00195017 /* MarcM_CoursSwiftApp.swift in Sources */,
+				E53D726C2CBFBEB6004DEC24 /* MeteoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
