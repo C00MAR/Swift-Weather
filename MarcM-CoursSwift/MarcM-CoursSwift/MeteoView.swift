@@ -22,81 +22,78 @@ struct MeteoView: View {
         ZStack {
             appSettings.currentTheme.backgroundColor.edgesIgnoringSafeArea(.all)
             
-            ScrollView {
-                VStack {
-                    Text("Météo par Code INSEE")
-                        .font(.largeTitle)
-                        .foregroundColor(appSettings.currentTheme.textColor)
-                        .padding()
-                    
-                    HStack {
-                        TextField("Entrez le code INSEE", text: $inseeCode)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .keyboardType(.numberPad)
-                            .foregroundColor(appSettings.currentTheme.textColor)
-                            .background(appSettings.currentTheme.backgroundColor)
-                        
-                        Button(action: {
-                            if !inseeCode.isEmpty {
-                                fetchWeather(insee: inseeCode)
-                            }
-                        }) {
-                            Image(systemName: "magnifyingglass")
-                                .foregroundColor(appSettings.currentTheme.backgroundColor)
-                                .padding(10)
-                                .background(appSettings.currentTheme.accentColor)
-                                .cornerRadius(10)
-                        }
-                    }
+            VStack {
+                Text("Météo par Code INSEE")
+                    .font(.largeTitle)
+                    .foregroundColor(appSettings.currentTheme.textColor)
                     .padding()
+                
+                HStack {
+                    TextField("Entrez le code INSEE", text: $inseeCode)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .keyboardType(.numberPad)
+                        .foregroundColor(appSettings.currentTheme.textColor)
+                        .background(appSettings.currentTheme.backgroundColor)
                     
-                    if isLoading {
-                        ProgressView()
-                            .progressViewStyle(CircularProgressViewStyle(tint: appSettings.currentTheme.textColor))
-                    } else if let error = errorMessage {
-                        Text(error)
-                            .foregroundColor(.red)
-                    } else if let city = cityInfo, let weather = weatherData {
-                        VStack(alignment: .leading, spacing: 10) {
-                            Text("Météo pour \(city.name)")
-                                .font(.title2)
-                            Text("Code INSEE: \(city.insee)")
-                            Text("Code postal: \(city.cp)")
-                            Text("Altitude: \(city.altitude) m")
-                            Text("Latitude: \(city.latitude), Longitude: \(city.longitude)")
-                            
-                            Divider()
-                            
-                            Text("Température: \(Int(weather.averageTemperature))°C")
-                            Text("Min: \(weather.tmin)°C, Max: \(weather.tmax)°C")
-                            Text("Condition: \(weather.condition)")
+                    Button(action: {
+                        if !inseeCode.isEmpty {
+                            fetchWeather(insee: inseeCode)
                         }
-                        .padding()
-                        .background(appSettings.currentTheme.backgroundColor.opacity(0.1))
-                        .cornerRadius(10)
-                        .padding()
-                    }
-                    
-                    if !debugInfo.isEmpty {
-                        Text("Informations de débogage:")
-                            .font(.headline)
-                            .padding(.top)
-                        Text(debugInfo)
-                            .font(.footnote)
-                            .padding()
-                            .background(appSettings.currentTheme.backgroundColor.opacity(0.1))
+                    }) {
+                        Image(systemName: "magnifyingglass")
+                            .foregroundColor(appSettings.currentTheme.backgroundColor)
+                            .padding(10)
+                            .background(appSettings.currentTheme.accentColor)
                             .cornerRadius(10)
                     }
                 }
+                .padding()
+                
+                if isLoading {
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle(tint: appSettings.currentTheme.textColor))
+                } else if let error = errorMessage {
+                    Text(error)
+                        .foregroundColor(.red)
+                } else if let city = cityInfo, let weather = weatherData {
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text("Météo pour \(city.name)")
+                            .font(.title2)
+                        Text("Code INSEE: \(city.insee)")
+                        Text("Code postal: \(city.cp)")
+                        Text("Altitude: \(city.altitude) m")
+                        Text("Latitude: \(city.latitude), Longitude: \(city.longitude)")
+                        
+                        Divider()
+                        
+                        Text("Température: \(Int(weather.averageTemperature))°C")
+                        Text("Min: \(weather.tmin)°C, Max: \(weather.tmax)°C")
+                        Text("Condition: \(weather.condition)")
+                    }
+                    .padding()
+                    .background(appSettings.currentTheme.backgroundColor.opacity(0.1))
+                    .cornerRadius(10)
+                    .padding()
+                }
+                
+                if !debugInfo.isEmpty {
+                    Text("Informations de débogage:")
+                        .font(.headline)
+                        .padding(.top)
+                    Text(debugInfo)
+                        .font(.footnote)
+                        .padding()
+                        .background(appSettings.currentTheme.backgroundColor.opacity(0.1))
+                        .cornerRadius(10)
+                }
             }
         }
+        .navigationBarItems(trailing: NavigationLink(destination: SettingsView()) {
+            Image(systemName: "gearshape.fill")
+                .foregroundColor(appSettings.currentTheme.textColor)
+        })
+        .navigationTitle("Retour")
         .foregroundColor(appSettings.currentTheme.textColor)
-        .navigationBarItems(trailing:
-            NavigationLink(destination: SettingsView()) {
-                Image(systemName: "gearshape.fill")
-                    .foregroundColor(appSettings.currentTheme.textColor)
-            }
-        )
         .preferredColorScheme(appSettings.currentTheme == .shadow ? .dark : .light)
     }
     

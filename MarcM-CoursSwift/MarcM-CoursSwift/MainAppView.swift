@@ -9,9 +9,10 @@ import SwiftUI
 
 struct MenuAppView: View {
     @EnvironmentObject var appSettings: AppSettings
+    @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
-        NavigationStack {
+        NavigationView {
             ZStack {
                 appSettings.currentTheme.backgroundColor.edgesIgnoringSafeArea(.all)
                 
@@ -36,17 +37,23 @@ struct MenuAppView: View {
                             .foregroundColor(appSettings.currentTheme.backgroundColor)
                             .cornerRadius(10)
                     }
-                }
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: SettingsView()) {
-                        Image(systemName: "gearshape.fill")
-                            .foregroundColor(appSettings.currentTheme.textColor)
+                    
+                    Button("Déconnexion") {
+                        presentationMode.wrappedValue.dismiss()
                     }
+                    .padding()
+                    .background(Color.red)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
                 }
             }
+            .navigationBarTitle("Menu Principal")
+            .navigationBarItems(trailing: NavigationLink(destination: SettingsView()) {
+                Image(systemName: "gearshape.fill")
+                    .foregroundColor(appSettings.currentTheme.textColor)
+            })
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         .preferredColorScheme(appSettings.currentTheme == .shadow ? .dark : .light)
     }
 }

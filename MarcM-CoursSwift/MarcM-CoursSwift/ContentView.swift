@@ -18,56 +18,64 @@ struct ContentView: View {
     private let rootPassword = "root"
 
     var body: some View {
-        NavigationStack {
+        NavigationView {
             ZStack {
                 appSettings.currentTheme.backgroundColor.edgesIgnoringSafeArea(.all)
-                
+
                 VStack {
-                    Text("Connection :")
-                        .font(.largeTitle)
-                        .foregroundColor(appSettings.currentTheme.textColor)
-                        .padding()
-                    TextField("Username", text: $username)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .padding()
-                        .foregroundColor(appSettings.currentTheme.textColor)
-                        .background(appSettings.currentTheme.backgroundColor)
-                    SecureField("Mot De Passe", text: $password)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .padding()
-                        .foregroundColor(appSettings.currentTheme.textColor)
-                        .background(appSettings.currentTheme.backgroundColor)
-                    
+                    HStack {
+                        line
+                        Text("connexion")
+                            .fontWeight(.bold)
+                            .textCase(.uppercase)
+                        line
+                    }
+                    VStack(spacing: 10) {
+                        TextField("Username", text: $username)
+                            .padding(15.0)
+                            .border(appSettings.currentTheme.textColor)
+                            .cornerRadius(3)
+                        SecureField("Mot De Passe", text: $password)
+                            .padding(15.0)
+                            .border(appSettings.currentTheme.textColor)
+                            .cornerRadius(3)
+                    }
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 25)
+
                     if let error = error {
                         Text(error)
                             .foregroundColor(.red)
-                            .padding()
+                            .padding(.bottom, 25)
+                            .padding(.top, -20)
                     }
-
-                    Button(action: {
-                        logUser()
-                    }) {
-                        Text("Connexion")
-                            .padding()
-                            .background(appSettings.currentTheme.accentColor)
-                            .foregroundColor(appSettings.currentTheme.backgroundColor)
-                            .cornerRadius(5)
-                    }
-                    .padding()
-                    
-                    .navigationDestination(isPresented: $isConnected) {
-                        MenuAppView()
-                    }
-                }
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: SettingsView()) {
-                        Image(systemName: "gearshape.fill")
-                            .foregroundColor(appSettings.currentTheme.textColor)
+                    HStack {
+                        line
+                        Button(action: {
+                            logUser()
+                        }) {
+                            Text("Se connecter")
+                                .fontWeight(.bold)
+                                .textCase(.uppercase)
+                                .padding(20)
+                                .frame(width: 175.0, height: 50.0)
+                                .background(appSettings.currentTheme.accentColor)
+                                .foregroundColor(appSettings.currentTheme.backgroundColor)
+                                .cornerRadius(5)
+                        }
+                        line
                     }
                 }
             }
+            .navigationTitle("Connexion")
+            .navigationBarItems(trailing: NavigationLink(destination: SettingsView()) {
+                Image(systemName: "gearshape.fill")
+                    .foregroundColor(appSettings.currentTheme.textColor)
+            })
+        }
+        .navigationViewStyle(StackNavigationViewStyle())
+        .fullScreenCover(isPresented: $isConnected) {
+            MenuAppView()
         }
         .preferredColorScheme(appSettings.currentTheme == .shadow ? .dark : .light)
     }
@@ -83,6 +91,13 @@ struct ContentView: View {
         } else {
             error = "Nom d'utilisateur ou MDP incorrect"
         }
+    }
+    
+    var line: some View {
+        VStack {
+            Divider().background(appSettings.currentTheme.textColor)
+        }
+        .padding(10)
     }
 }
 
